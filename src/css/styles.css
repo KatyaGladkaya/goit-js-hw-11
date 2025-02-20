@@ -29,7 +29,7 @@
   width: 272px;
   height: 38px;
   border: 1px solid #808080;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -45,7 +45,7 @@ button {
   width: 91px;
   height: 40px;
   background: #4e75ff;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -78,10 +78,8 @@ button:hover {
   text-align: center;
 }
 
-
-
 .loader {
-  color: #FFF;
+  color: #fff;
   position: relative;
   display: inline-block;
   margin-top: 40px;
