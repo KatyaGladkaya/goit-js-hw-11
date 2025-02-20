@@ -18,7 +18,7 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-searchForm.addEventListener('submit', async e => {
+searchForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
   const query = searchInput.value.trim();
@@ -28,30 +28,31 @@ searchForm.addEventListener('submit', async e => {
     return;
   }
 
-  try {
     showLoader();
     clearGallery(gallery);
 
-    const images = await fetchImages(query);
-
-    if (images.length === 0) {
-      showToast(
-        'Sorry, there are no images matching your search query. Please try again!'
-      );
-    } else {
-      renderImages(images, gallery);
-    }
-    if (lightbox) {
-      lightbox.refresh();
-    } else {
-      lightbox = new SimpleLightbox('.gallery a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-      });
-    }
-  } catch (error) {
-    showToast('Failed to fetch images. Please try again later.');
-  } finally {
-    hideLoader();
-  }
+  fetchImages(query)
+    .then(function (images) {
+      if (images.length === 0) {
+        showToast(
+          'Sorry, there are no images matching your search query. Please try again!'
+        );
+      } else {
+        renderImages(images, gallery);
+      }
+      if (lightbox) {
+        lightbox.refresh();
+      } else {
+        lightbox = new SimpleLightbox('.gallery a', {
+          captionsData: 'alt',
+          captionDelay: 250,
+        });
+      }
+    })
+    .catch(function (error) {
+      showToast('Failed to fetch images. Please try again later.');
+    })
+    .finally(function () {
+      hideLoader();
+    });
 });
